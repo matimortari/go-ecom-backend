@@ -5,8 +5,7 @@ import (
 	"os"
 
 	"github.com/golang-migrate/migrate/v4"
-	postgresMigrate "github.com/golang-migrate/migrate/v4/database/postgres"
-	_ "github.com/golang-migrate/migrate/v4/source/file"
+	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/lib/pq"
 	"github.com/matimortari/go-ecom-backend/config"
 )
@@ -18,7 +17,7 @@ func main() {
 		log.Fatal("Error opening database: ", err)
 	}
 
-	driver, err := postgresMigrate.WithInstance(db, &postgresMigrate.Config{})
+	driver, err := postgres.WithInstance(db, &postgres.Config{})
 	if err != nil {
 		log.Fatal("Error initializing migration driver: ", err)
 	}
